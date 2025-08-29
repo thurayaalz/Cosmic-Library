@@ -170,10 +170,33 @@ svg {
 }
 /*---------------*/
 header {
-  background-color: rgb(60, 55, 55, 20%);
+
   z-index: 2;
   opacity: 1;
   position: absolute;
+  width: 100VW;
+  height: 60px;
+  justify-items: center;
+  border-bottom: rgba(207, 204, 204, 10%) 0.02px solid ;
+  color: aliceblue;
+  display: grid;
+  grid-template-columns: 0.03fr 0.97fr;
+}
+.sv{
+    background-color: rgba(255,255,255, 0.1);
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 25px;
+    width: 25px;
+    margin: 5px;
+}
+.sv:hover{
+    background: conic-gradient(
+    from var(--deg) at center,
+    rgba(221, 74, 255),
+    rgba( 180, 180, 50),
+    rgba(100, 220, 255)
+  );
 }
 main {
   z-index: 1;
@@ -193,7 +216,7 @@ main {
   height: 70vh;
 }
 .book {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
   aspect-ratio: 2/4;
   background-blend-mode: color-burn;
   max-height: 240px;
@@ -204,37 +227,63 @@ main {
   backdrop-filter: blur(10px);
   border-radius: 10px;
   position: relative;
-  transition: box-shadow  0.4s ease ;
+  transition: box-shadow 0.4s ease;
 }
 .book:hover {
   background: radial-gradient(
     circle at bottom,
     rgba(255, 255, 255, 0.6),
     rgba(255, 255, 255, 0.5),
-    rgba(221, 74, 255 ,0.3),
-    rgba(100, 220, 255,0.3));
-  backdrop-filter: url(#goo) ;
-  border-bottom: white 0.5px solid ;
-  box-shadow: 0 5px 0   rgba(255, 255, 255, 0.7);
+    rgba(221, 74, 255, 0.3),
+    rgba(100, 220, 255, 0.3)
+  );
+  backdrop-filter: url(#goo);
+  border-bottom: white 0.5px solid;
+  box-shadow: 0 5px 0 rgba(255, 255, 255, 0.7);
   color: white;
   transition: 0.4s;
 }
 
-.add{
-    background: var(--color-bg1);
-    color: white;
-    border-radius:10px;
-    width: 100%;
-
+.add {
+  background: rgb(220, 219, 219);
+  border:none;
+  color: var(--color-bg2);
+  border-radius: 10px;
+  width: 17rem;
+  height: 20px;
+  position: relative;
+  aspect-ratio: 1/16;
 }
-.add::before{
-    content: "";
-    position:absolute;
-    height: 100%;
-    background: conic-gradient(
-        from 0deg at center,
-        rgba(var(--color1), 8),
-        rgba(var(--color2),8)
-    );
 
+@property --deg{
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+}
+.add::before,
+.add::after {
+    content: "";
+    position: absolute;
+    left: -1px;
+    height: inherit;
+    width: inherit;
+  background: conic-gradient(
+    from var(--deg) at center,
+    rgba(221, 74, 255),
+    rgba( 180, 180, 50),
+    rgba(100, 220, 255)
+  );
+  border-radius: inherit;
+  z-index: -2;
+  padding: 0.2px;
+    animation: Rot 2s linear infinite;
+}
+.add::after {
+  filter: blur(10px);
+}
+
+@keyframes Rot {
+    to{
+--deg:360deg;
+    }
 }
