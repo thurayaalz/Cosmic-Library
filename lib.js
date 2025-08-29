@@ -1,5 +1,5 @@
 const myLibrary = [];
-console.log("??????????????????");
+
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author;
@@ -14,7 +14,23 @@ function addBookToLibrary() {
   book.classList.add("book");
 }
 
-// BACKGROUND --------------
+function renderB(){
+    const shelf = document.querySelector('.shelf');
+    shelf.innerHTML = '';
+
+    myLibrary.forEach((book , index)=>{
+        const book = document.createElement('div');
+        book.classList.add('book');
+        book.innerText = `<h3> ${book.title}</h3>
+        <p>${book.authur}</p>
+        <p> ${book.pages}</p>
+        <p>Status ${book.read? 'Read' : 'Not Read Yet'}</p> 
+        <button onclick="removeBook(${index})" id="DB">Remove Book</button> `
+        shelf.appendChild(book);
+    });
+}
+
+// BACKGROUND -------------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
   const Bub = document.querySelector('.inter');
