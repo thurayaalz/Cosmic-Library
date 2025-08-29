@@ -219,3 +219,22 @@ main {
   color: white;
   transition: 0.4s;
 }
+
+.add{
+    background: var(--color-bg1);
+    color: white;
+    border-radius:10px;
+    width: 100%;
+
+}
+.add::before{
+    content: "";
+    position:absolute;
+    height: 100%;
+    background: conic-gradient(
+        from 0deg at center,
+        rgba(var(--color1), 8),
+        rgba(var(--color2),8)
+    );
+
+}
