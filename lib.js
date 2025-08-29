@@ -1,4 +1,5 @@
 const myLibrary = [];
+console.log(document.querySelector('form'));
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -7,9 +8,20 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-function addBookToLibrary(Book) {
+document.querySelector("form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const Btit = document.getElementById("Btitle").value;
+  const Bauth = document.getElementById("Bauthor").value;
+  const Bpages = document.getElementById("Bpages").value;
+  const Bstatus =
+    document.getElementById("Bstatus").value.toLowerCase() === "read";
+
+  const newBook = new Book(Btit, Bauth, Bpages, Bstatus);
+  addBookToLibrary(newBook);
+});
+function addBookToLibrary(newBook) {
   // take params, create a book then store it in the array
-  myLibrary.push(bookObj);
+  myLibrary.push(newBook);
   renderB();
 }
 
@@ -18,19 +30,20 @@ function renderB() {
   shelf.innerHTML = "";
 
   myLibrary.forEach((book, index) => {
-    const book = document.createElement("div");
-    book.classList.add("book");
-    book.innerText = `<h3> ${book.title}</h3>
-        <p>${book.authur}</p>
-        <p> ${book.pages}</p>
-        <p>Status ${book.read ? "Read" : "Not Read Yet"}</p> 
+    const Vbook = document.createElement("div");
+    Vbook.classList.add("book");
+    Vbook.innerHTML = `<h3> ${Book.title}</h3>
+        <p>${Book.author}</p>
+        <p> ${Book.pages}</p>
+        <p>Status ${Book.read ? "Read" : "Not Read Yet"}</p> 
         <button onclick="removeBook(${index})" id="DB">Remove Book</button> `;
-    shelf.appendChild(book);
+    shelf.appendChild(Vbook);
   });
 }
-function removeBook(index){
-myLibrary.splice(index , 1);
-renderB();
+
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  renderB();
 }
 
 // BACKGROUND -------------------------------------------------------
