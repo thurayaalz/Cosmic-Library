@@ -1,4 +1,5 @@
-const myLibrary = [];
+const myLibrary = [new Book("Wuthring Heights" , "Emely Bronte" , 400 , "read"),new Book("Wuthring Heights" , "Emely Bronte" , 400 , "read"),new Book("Wuthring Heights" , "Emely Bronte" , 400 , "read"),new Book("Wuthring Heights" , "Emely Bronte" , 400 , "read"),new Book("Wuthring Heights" , "Emely Bronte" , 400 , "read"),new Book("Wuthring Heights" , "Emely Bronte" , 400 , "read"),new Book("Wuthring Heights" , "Emely Bronte" , 400 , "read"),new Book("Wuthring Heights" , "Emely Bronte" , 400 , "read")];
+renderB();
 console.log(document.querySelector('form'));
 
 function Book(title, author, pages, read) {
@@ -7,6 +8,18 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
+
+document.getElementById("newB").addEventListener('click', ()=>{
+  const Bform = document.querySelector("form")
+  Bform.style.bottom ='200px';
+  Bform.style.transition = '2s';
+  Bform.style.zIndex = '10';
+});
+document.getElementById("insertB").addEventListener('click', ()=>{
+  const Bform = document.querySelector("form")
+  Bform.style.bottom ='-1000px';
+  Bform.style.transition = '2s';
+});
 
 document.querySelector("form").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -17,11 +30,11 @@ document.querySelector("form").addEventListener("submit", function (e) {
     document.getElementById("Bstatus").value.toLowerCase() === "read";
 
   const newBook = new Book(Btit, Bauth, Bpages, Bstatus);
+  myLibrary.push(newBook);
   addBookToLibrary(newBook);
 });
 function addBookToLibrary(newBook) {
   // take params, create a book then store it in the array
-  myLibrary.push(newBook);
   renderB();
 }
 
@@ -32,10 +45,10 @@ function renderB() {
   myLibrary.forEach((book, index) => {
     const Vbook = document.createElement("div");
     Vbook.classList.add("book");
-    Vbook.innerHTML = `<h3> ${Book.title}</h3>
-        <p>${Book.author}</p>
-        <p> ${Book.pages}</p>
-        <p>Status ${Book.read ? "Read" : "Not Read Yet"}</p> 
+    Vbook.innerHTML = `<h3> ${book.title}</h3>
+        <p>${book.author}</p>
+        <p> ${book.pages}</p>
+        <p>Status ${book.read ? "Read" : "Not Read Yet"}</p> 
         <button onclick="removeBook(${index})" id="DB">Remove Book</button> `;
     shelf.appendChild(Vbook);
   });

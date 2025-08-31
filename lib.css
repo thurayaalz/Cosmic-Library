@@ -4,6 +4,7 @@ body {
   color: rgb(214, 179, 245);
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 /*-----------animated background---------*/
 :root {
@@ -168,35 +169,30 @@ svg {
     transform: translateY(-50%) translateX(-10%);
   }
 }
-/*---------------*/
+/*-------------------------------------*/
 header {
-
   z-index: 2;
   opacity: 1;
   position: absolute;
-  width: 100VW;
+  width: 100vw;
   height: 60px;
   justify-items: center;
-  border-bottom: rgba(207, 204, 204, 10%) 0.02px solid ;
+  border-bottom: rgba(207, 204, 204, 10%) 0.02px solid;
   color: aliceblue;
   display: grid;
   grid-template-columns: 0.03fr 0.97fr;
 }
-.sv{
-    background-color: rgba(255,255,255, 0.1);
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 25px;
-    width: 25px;
-    margin: 5px;
+.sv {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 25px;
+  width: 25px;
+  margin: 5px;
+  margin-left: 10px;
 }
-.sv:hover{
-    background: conic-gradient(
-    from var(--deg) at center,
-    rgba(221, 74, 255),
-    rgba( 180, 180, 50),
-    rgba(100, 220, 255)
-  );
+.sv:hover {
+  box-shadow: 0 1px 10px white;
 }
 main {
   z-index: 1;
@@ -207,14 +203,51 @@ main {
   width: 100vw;
   height: 100vh;
 }
+form{
+    background-color: rgb(203, 201, 201, 0.6);
+    backdrop-filter: blur(10px);
+    height: 400px;
+    width: 300px;
+    display: grid;
+    color: white;
+    border-radius:10px;
+    padding:20px;
+    gap:5px;
+    position: absolute;
+    margin: auto;
+    box-shadow: 0 10px 20px rgba(71, 71, 71 , 0.6);
+    bottom: -1000px;
+    transition: 4s ease;
+}
+
+form input{
+    border-radius: 10px;
+    border: none;
+    background-color:rgba(238, 238, 238 , 0.6);
+}
+
 .shelf {
   margin: auto;
   gap: 15px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-auto-rows: repeat(3, 1fr);
   height: 70vh;
+  overflow-y: scroll;
 }
+.shelf::-webkit-scrollbar {
+  width: 8px;
+}
+
+.shelf::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.shelf::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
 .book {
   font-size: 1.2rem;
   aspect-ratio: 2/4;
@@ -222,14 +255,15 @@ main {
   max-height: 240px;
   align-content: center;
   justify-items: center;
-  padding: 10px;
-  background-color: rgba(102, 105, 99, 0.28);
+  padding: 20px;
+  background-color: rgba(161, 163, 158, 0.28);
   backdrop-filter: blur(10px);
   border-radius: 10px;
   position: relative;
   transition: box-shadow 0.4s ease;
 }
 .book:hover {
+  cursor: pointer;
   background: radial-gradient(
     circle at bottom,
     rgba(255, 255, 255, 0.6),
@@ -243,10 +277,25 @@ main {
   color: white;
   transition: 0.4s;
 }
+.rm{
+  border: none;
+  border-radius: 10px;
+  background-color: rgba(216, 148, 148, 0.6);
+  cursor: pointer;
+  padding: 6px;
+  width: 100%;
+  margin: auto;
+  color: white;
+}
+.rm:hover{
+  background-color: rgba(200, 50, 50 , 0.8);
+
+}
 
 .add {
+  cursor: pointer;
   background: rgb(220, 219, 219);
-  border:none;
+  border: none;
   color: var(--color-bg2);
   border-radius: 10px;
   width: 17rem;
@@ -255,35 +304,91 @@ main {
   aspect-ratio: 1/16;
 }
 
-@property --deg{
-    syntax: '<angle>';
-    inherits: true;
-    initial-value: 0deg;
+@property --deg {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
 }
 .add::before,
 .add::after {
-    content: "";
-    position: absolute;
-    left: -1px;
-    height: inherit;
-    width: inherit;
+  content: "";
+  position: absolute;
+  left: -1px;
+  height: inherit;
+  width: inherit;
   background: conic-gradient(
     from var(--deg) at center,
     rgba(221, 74, 255),
-    rgba( 180, 180, 50),
-    rgba(100, 220, 255)
+    rgba(180, 180, 50),
+    rgba(100, 220, 255),
+    rgba(200, 50, 50),
+    rgba(221, 74, 255)
   );
   border-radius: inherit;
   z-index: -2;
   padding: 0.2px;
-    animation: Rot 2s linear infinite;
+  animation: Rot 4s linear infinite;
 }
 .add::after {
   filter: blur(10px);
 }
+.Bchk{
+  height: 30px;
+  width: 100%;
+  display: flex;
+}
+label{
+  background: linear-gradient(rgb(208, 210, 213),rgba(238, 238, 238 , 0.6) );
+  box-shadow: 0 0 4px black inset;
+  width: 100%;
+  border-radius: 10px;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  padding: 3px;
+  align-content: center;
 
+}
+label::before
+{
+  height: 100%;
+  content: "";
+  width: 50%;
+  position: absolute;
+  background: linear-gradient(var(--color-bg1) ,var(--color-bg2));
+  box-shadow: 0 0 10px inset rgb(200, 50, 50);
+  border-radius: 10px;
+  transition: 0.3s all;
+  left:0;
+  top:0;
+}
+label::after{
+  content: "";
+  height:5px;
+  width: 5px;
+  display: inline-block;
+  position: absolute;
+  background: linear-gradient(var(--color-bg1) ,var(--color-bg2));
+  box-shadow: 0 0 10px inset rgb(0, 17, 82);
+  border-radius: 10px;
+  transition: 0.3s all;
+  left:5%;
+  top:45%;
+}
+input[type="checkbox"]:checked ~ label::after {
+  left: 90%;
+  box-shadow: 0 0 10px inset white;
+}
+input[type="checkbox"]:checked ~ label::before  {
+  left: 50%;
+  box-shadow: 0 0 8px inset rgb(100, 220, 255);
+}
+input[type="checkbox"]{
+  display: none;
+}
 @keyframes Rot {
-    to{
---deg:360deg;
-    }
+  to {
+    --deg: 360deg;
+  }
 }
