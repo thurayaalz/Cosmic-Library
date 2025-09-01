@@ -1,64 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>library</title>
-    <link rel="stylesheet" href="lib.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="lib.css" />
+  </head>
+  <body>
+    <div class="dim"></div>
+    <div class="logn">
+      <button class="cnl"></button>
+      <h3 style="justify-self: center">Welcome Back!</h3>
+      User Name: <br /><input type="text" id="uName" /><br />
+      Password: <br /><input type="text" /> <br />
+      <button class="add" id="Log">Login</button>
+      <button class="add" style="margin-top: 18px">Sign Up</button>
+    </div>
+
     <header>
-        <img src="../lib/user.svg" alt="" class="sv">
-        <h3 >Cosmic library</h3>
+      <img src="../lib/user.svg" alt="" class="sv" />
+      <h6 id="dName">visitor</h6>
+      <h3>Cosmic library</h3>
     </header>
     <main>
-        <form >
-            <h4>Add a Book</h4>
-           Title :
-            <input type="text" id="Btitle" placeholder="Wuthring Heights">
-            Auther Name:
-            <input type="text" id="Bauthor" placeholder="Emily Bronte">
-            Pages
-            <input type="text" id="Bpages" placeholder="400">
-            Book Status
-            <input type="text" id="Bstatus">
-            <button type="submit" class="add" onclick="addBookToLibrary()"> Add My Book!</button>
-        </form>
-        <div class="shelf">
-            
-            
+      <form>
+        <h4>Add a Book</h4>
+        Title :
+        <input type="text" id="Btitle" placeholder="Wuthring Heights" />
+        Auther Name:
+        <input type="text" id="Bauthor" placeholder="Emily Bronte" />
+        Pages
+        <input type="text" id="Bpages" placeholder="400" />
+        Finished?
+        <div class="Bchk">
+          <input type="checkbox" id="Bstatus" />
+          <label for="Bstatus" style="bottom: 85px;">Read</label>
         </div>
-        <div >
-            <p>to Add books Click this magic button here</p>
-            <button class="add"> + </button>
-        </div>
+        <button
+          type="submit"
+          class="add"
+          onclick="addBookToLibrary()"
+          id="insertB"
+        >
+          Add My Book!
+        </button>
+      </form>
+      <div class="shelf"></div>
+      <div>
+        <p>to Add books Click this magic button here</p>
+        <button class="add" id="newB">+</button>
+      </div>
     </main>
     <div class="gr-bg">
-        <svg xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <filter id="goo">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
-                <feBlend in="SourceGraphic" in2="goo" />
-              </filter>
-            </defs>
-          </svg>
-        <div class="gr-con">
-            <div class="g1">
-            </div>
-            <div class="g2">
-            </div>
-            <div class="g3">
-            </div>
-            <div class="g4">
-            </div> <div class="g5">
-            </div>
-            <div class="inter">
-    
-            </div>
-        </div>
-</div>
-<script src="../lib/lib.js" defer>  </script>
-</body>
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="10"
+              result="blur"
+            />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+              result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
+      <div class="gr-con">
+        <div class="g1"></div>
+        <div class="g2"></div>
+        <div class="g3"></div>
+        <div class="g4"></div>
+        <div class="g5"></div>
+        <div class="inter"></div>
+      </div>
+    </div>
+    <script src="../lib/lib.js" defer></script>
+  </body>
 </html>
