@@ -152,3 +152,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   move();
 });
+
+//rebuild forcing
