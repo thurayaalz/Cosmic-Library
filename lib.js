@@ -26,7 +26,6 @@ document.getElementById("insertB").addEventListener("click", () => {
   Bform.style.transition = "2s";
 });
 
-//يظهر نافذة الدخول
 const logn = document.querySelector(".logn");
 const dim = document.querySelector(".dim")
 
@@ -54,7 +53,7 @@ document.getElementById("Log").addEventListener("click", () => {
     document.querySelector(".logn").appendChild(dName);
   }
   dName.innerHTML = `<strong>${uName}</strong>!`;
-  
+
   logn.style.left = "-100px";
   logn.style.top = "-100px";
   logn.style.zIndex = "-19";
@@ -75,10 +74,11 @@ document.querySelector("form").addEventListener("submit", function (e) {
   if (!Btit || !Bauth || !Bpages) {
     alert("Please fill in all required fields.");
     return;
+  } else {
+    const newBook = new Book(Btit, Bauth, Bpages, Bstatus);
+    myLibrary.push(newBook);
+    addBookToLibrary(newBook);
   }
-  const newBook = new Book(Btit, Bauth, Bpages, Bstatus);
-  myLibrary.push(newBook);
-  addBookToLibrary(newBook);
 });
 
 function addBookToLibrary(newBook) {
@@ -101,8 +101,8 @@ function renderB() {
       <p class="status-text">Status: ${book.read ? "Read" : "Not Read Yet"}</p>
       <div class="Bchk">
         <input type="checkbox" id="Bstatus-${index}" ${
-      book.read ? "checked" : ""
-    }>
+          book.read ? "checked" : ""
+        }>
         <label for="Bstatus-${index}"></label>
       </div>
       <button onclick="removeBook(${index})" class="rm"></button>
@@ -110,7 +110,6 @@ function renderB() {
 
     shelf.appendChild(Vbook);
 
-    // ✅ Move this inside the loop so each book gets its own listener
     const checkbox = Vbook.querySelector(`#Bstatus-${index}`);
     const statusText = Vbook.querySelector(".status-text");
 
@@ -125,6 +124,17 @@ function removeBook(index) {
   myLibrary.splice(index, 1);
   renderB();
 }
+
+const bNameValidate = document.getElementById("Btitle");
+bNameValidate.addEventListener("input" , (event)=>
+  {
+    if(bNameValidate.validity.valueMissing){
+      bNameValidate.setCustomValidity("Where is the book title Bro?");
+    } else {
+      bNameValidate.setCustomValidity("");
+    }
+  }
+)
 
 // BACKGROUND -------------------------------------------------------
 
@@ -153,4 +163,3 @@ document.addEventListener("DOMContentLoaded", () => {
   move();
 });
 
-//rebuild forcing
